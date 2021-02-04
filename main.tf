@@ -1,3 +1,11 @@
+
+
+provider "aws" {
+  region = var.aws_region
+}
+
+
+
 data "terraform_remote_state" "remote" {
   backend = "remote"
   config {

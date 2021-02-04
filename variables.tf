@@ -25,3 +25,7 @@ variable "key" {
 variable "rds_password" {
   default = "you_are_mad_not_to_change"
 }
+
+variable "aws_region" {
+  default = "eu-west-1"
+}
