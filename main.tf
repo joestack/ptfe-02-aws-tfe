@@ -52,7 +52,7 @@ module "tfe" {
 
   
   tfe_bootstrap_bucket          = "data.terraform_remote_state.remote.tfe_bootstrap_bucket"
-  tfe_license_filepath          = "s3://${data.terraform_remote_state.remote.tfe_bootstrap_bucket}/tfe-license.rli"
+  tfe_license_filepath          = "s3://data.terraform_remote_state.remote.tfe_bootstrap_bucket/tfe-license.rli"
   tfe_hostname                  = "${var.hostname}.${var.dns_zone}"
   console_password              = "aws_secretsmanager"
   enc_password                  = "aws_secretsmanager"
