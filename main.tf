@@ -59,8 +59,8 @@ module "tfe" {
   aws_secretsmanager_secret_arn = "data.terraform_remote_state.remote.aws_secret_arn"
   
   vpc_id                     = "data.terraform_remote_state.remote.vpc_id"
-  alb_subnet_ids             = "data.terraform_remote_state.remote.alb_subnet_ids" # private subnet IDs
-  ec2_subnet_ids             = "data.terraform_remote_state.remote.ec2_subnet_ids" # private subnet IDs
+  alb_subnet_ids             = "tolist(data.terraform_remote_state.remote.alb_subnet_ids)" # private subnet IDs
+  ec2_subnet_ids             = tolist(data.terraform_remote_state.remote.ec2_subnet_ids) # private subnet IDs
   rds_subnet_ids             = "data.terraform_remote_state.remote.rds_subnet_ids" # private subnets IDs
   load_balancer_is_internal  = true
   route53_hosted_zone_public = var.dns_zone
