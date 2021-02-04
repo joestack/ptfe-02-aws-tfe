@@ -19,16 +19,29 @@ provider "aws" {
 #   }
 # }
 
-terraform {
-  backend "remote" {
-    hostname = "app.terraform.io"
+data "terraform_remote_state" "remote" {
+  backend = "remote"
+
+  config = {
     organization = var.remote_org
 
-    workspaces {
+    workspaces = {
       name = var.remote_workspace
     }
   }
 }
+
+
+# terraform {
+#   backend "remote" {
+#     hostname = "app.terraform.io"
+#     organization = var.remote_org
+
+#     workspaces {
+#       name = var.remote_workspace
+#     }
+#   }
+# }
 
 
 
