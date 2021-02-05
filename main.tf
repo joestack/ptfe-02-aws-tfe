@@ -61,8 +61,8 @@ module "tfe" {
   
   vpc_id                     = data.terraform_remote_state.remote.outputs.vpc_id
   alb_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnet IDs
-  ec2_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnet IDs
-  rds_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnets IDs
+  ec2_subnet_ids             = data.terraform_remote_state.remote.outputs.ec2_subnet_ids # private subnet IDs
+  rds_subnet_ids             = data.terraform_remote_state.remote.outputs.rds_subnet_ids # private subnets IDs
   load_balancer_is_internal  = true
   route53_hosted_zone_public = var.dns_zone
 
