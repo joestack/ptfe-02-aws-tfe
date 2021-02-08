@@ -49,6 +49,13 @@ module "tfe" {
   source = "git@github.com:joestack/is-terraform-aws-tfe-standalone.git"
 
   friendly_name_prefix       = var.name_prefix
+  common_tags = {
+    "App"               = "TFE"
+    "Environment"       = "Production"
+    "Is_Secondary"      = "False"
+    "Owner"             = "Joern"
+    "Provisioning_Tool" = "Terraform"
+  }
 
   
   tfe_bootstrap_bucket          = data.terraform_remote_state.remote.outputs.tfe_bootstrap_bucket
@@ -61,13 +68,17 @@ module "tfe" {
   
   vpc_id                     = data.terraform_remote_state.remote.outputs.vpc_id
   alb_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnet IDs
-  ec2_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnet IDs
-  rds_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnets IDs
+  ec2_subnet_ids             = data.terraform_remote_state.remote.outputs.ec2_subnet_ids # private subnet IDs
+  rds_subnet_ids             = data.terraform_remote_state.remote.outputs.rds_subnet_ids # private subnets IDs
   load_balancer_is_internal  = true
   route53_hosted_zone_public = var.dns_zone
 
   ssh_key_pair = var.key
   rds_master_password = var.rds_password
+
+  ingress_cidr_alb_allow     = ["0.0.0.0/0"]
+  #ingress_cidr_console_allow = ["1.1.1.1/32", "2.2.2.0/24"] # my workstation IP, IT admins workstation subnet
+  #ingress_cidr_ec2_allow     = ["1.1.1.1/32", "3.3.3.3/32"] # my workstation IP, my Bastion host IP
 
 }
 
