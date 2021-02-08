@@ -5,20 +5,6 @@ provider "aws" {
 }
 
 
-
-# data "terraform_remote_state" "remote" {
-#   backend = "remote"
-#   config {
-#     hostname     = "app.terraform.io"
-#     organization = var.remote_org
-#     #token        = "${var.team_token}"
-
-#     workspaces {
-#       name = var.remote_workspace
-#     }
-#   }
-# }
-
 data "terraform_remote_state" "remote" {
   backend = "remote"
 
@@ -30,19 +16,6 @@ data "terraform_remote_state" "remote" {
     }
   }
 }
-
-
-# terraform {
-#   backend "remote" {
-#     hostname = "app.terraform.io"
-#     organization = var.remote_org
-
-#     workspaces {
-#       name = var.remote_workspace
-#     }
-#   }
-# }
-
 
 
 module "tfe" {
@@ -70,7 +43,7 @@ module "tfe" {
   alb_subnet_ids             = data.terraform_remote_state.remote.outputs.alb_subnet_ids # private subnet IDs
   ec2_subnet_ids             = data.terraform_remote_state.remote.outputs.ec2_subnet_ids # private subnet IDs
   rds_subnet_ids             = data.terraform_remote_state.remote.outputs.rds_subnet_ids # private subnets IDs
-  load_balancer_is_internal  = true
+  load_balancer_is_internal  = false # was true before and I got no access to the node
   route53_hosted_zone_public = var.dns_zone
 
   ssh_key_pair = var.key
