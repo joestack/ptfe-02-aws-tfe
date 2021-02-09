@@ -29,3 +29,9 @@ variable "rds_password" {
 variable "aws_region" {
   default = "eu-west-1"
 }
+
+variable "os_distro" {}
+
+variable "rds_skip_final_snapshot" {}
+
+variable "bastion_host" {}
