@@ -53,8 +53,8 @@ module "tfe" {
   rds_master_password = var.rds_password
 
   ingress_cidr_alb_allow     = ["0.0.0.0/0"]
-  #ingress_cidr_console_allow = ["1.1.1.1/32", "2.2.2.0/24"] # my workstation IP, IT admins workstation subnet
-  #ingress_cidr_ec2_allow     = ["1.1.1.1/32", "3.3.3.3/32"] # my workstation IP, my Bastion host IP
+  ingress_cidr_console_allow = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"] # my workstation IP, IT admins workstation subnet
+  ingress_cidr_ec2_allow     = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"] # my workstation IP, my Bastion host IP 
 
 }
 
