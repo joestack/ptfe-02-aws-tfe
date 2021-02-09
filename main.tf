@@ -19,7 +19,7 @@ data "terraform_remote_state" "remote" {
 
 
 module "tfe" {
-  source = "git@github.com:joestack/is-terraform-aws-tfe-standalone.git"
+  source = "git@github.com:joestack/js-terraform-aws-tfe-standalone.git"
 
   friendly_name_prefix       = var.name_prefix
   common_tags = {
