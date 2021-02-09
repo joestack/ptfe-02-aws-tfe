@@ -45,6 +45,9 @@ module "tfe" {
   rds_subnet_ids             = data.terraform_remote_state.remote.outputs.rds_subnet_ids # private subnets IDs
   load_balancer_is_internal  = false # was true before and I got no access to the node
   route53_hosted_zone_public = var.dns_zone
+  os_distro                  = var.os_distro
+  rds_skip_final_snapshot    = var.rds_skip_final_snapshot
+  bastion_host               = var.bastion_host
 
   ssh_key_pair = var.key
   rds_master_password = var.rds_password
